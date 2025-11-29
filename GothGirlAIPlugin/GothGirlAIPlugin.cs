@@ -21,7 +21,7 @@ namespace GothGirlAIPlugin
 
         public override void OnEnabled()
         {
-            GameManager.SetAnswerCallback(GameUI.BroadcastAll);
+            GameManager.SetAnswerCallback(IntercomGameUI.EnqueueIntercomMessage);
 
             base.OnEnabled();
         }
