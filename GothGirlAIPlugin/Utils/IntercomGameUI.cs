@@ -29,6 +29,7 @@ namespace GothGirlAIPlugin.Utils
         {
             string current = "";
 
+            CASSIEMessage(message);
             foreach (char c in message)
             {
                 current += c;
@@ -38,6 +39,11 @@ namespace GothGirlAIPlugin.Utils
 
             IsTyping = false;
             TryTypeNextMessage();
+        }
+
+        private static void CASSIEMessage(string message)
+        {
+            Cassie.Message(message, isNoisy: false, isSubtitles: true);
         }
     }
 }

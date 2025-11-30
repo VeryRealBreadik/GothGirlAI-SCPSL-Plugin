@@ -31,12 +31,11 @@ namespace GothGirlAIPlugin.Commands
 
         private bool PlayerIsNearIntercom(Player player)
         {
-            Vector3 intercomPos = Room.Get(RoomType.EzIntercom).Position;
+            Room intercom = Room.Get(RoomType.EzIntercom);
+            Vector3 intercomPos = intercom.Position;
             Vector3 playerPos = player.Position;
-            Log.Info(playerPos.ToString() + " - " + intercomPos.ToString());
-            return playerPos.x >= intercomPos.x + 1.3 && playerPos.x <= intercomPos.x + 4.5 &&
-                playerPos.y >= intercomPos.y - 6.5 && playerPos.y <= intercomPos.y - 3 &&
-                playerPos.z >= intercomPos.z - 7.5 && playerPos.z <= intercomPos.z - 1;
+            return player.CurrentRoom == intercom &&
+                playerPos.y >= intercomPos.y - 6.5 && playerPos.y <= intercomPos.y - 3;
         }
     }
 }
