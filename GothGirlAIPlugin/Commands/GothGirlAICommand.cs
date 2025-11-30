@@ -2,6 +2,7 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using GothGirlAIPlugin.Utils;
+using UnityEngine;
 
 namespace GothGirlAIPlugin.Commands
 {
@@ -30,7 +31,12 @@ namespace GothGirlAIPlugin.Commands
 
         private bool PlayerIsNearIntercom(Player player)
         {
-            return player.CurrentRoom == Room.Get(RoomType.EzIntercom);
+            Vector3 intercomPos = Room.Get(RoomType.EzIntercom).Position;
+            Vector3 playerPos = player.Position;
+            Log.Info(playerPos.ToString() + " - " + intercomPos.ToString());
+            return playerPos.x >= intercomPos.x + 1.3 && playerPos.x <= intercomPos.x + 4.5 &&
+                playerPos.y >= intercomPos.y - 6.5 && playerPos.y <= intercomPos.y - 3 &&
+                playerPos.z >= intercomPos.z - 7.5 && playerPos.z <= intercomPos.z - 1;
         }
     }
 }
