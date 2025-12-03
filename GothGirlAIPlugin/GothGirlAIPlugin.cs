@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
-using GothGirlAIPlugin.Utils;
+using GothGirlAIPlugin.Utils.Games;
+using GothGirlAIPlugin.Utils.UI;
 
 namespace GothGirlAIPlugin
 {
@@ -18,19 +19,5 @@ namespace GothGirlAIPlugin
         public static GothGirlAIPlugin Instance => Singleton;
 
         public override PluginPriority Priority { get; } = PluginPriority.Last;
-
-        public override void OnEnabled()
-        {
-            GameManager.SetAnswerCallback(IntercomGameUI.EnqueueIntercomMessage);
-
-            base.OnEnabled();
-        }
-
-        public override void OnDisabled()
-        {
-            GameManager.SetAnswerCallback(null);
-
-            base.OnDisabled();
-        }
     }
 }

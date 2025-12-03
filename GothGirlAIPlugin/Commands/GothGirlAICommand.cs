@@ -1,7 +1,7 @@
 ﻿using CommandSystem;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using GothGirlAIPlugin.Utils;
+using GothGirlAIPlugin.Utils.Games;
 using UnityEngine;
 
 namespace GothGirlAIPlugin.Commands

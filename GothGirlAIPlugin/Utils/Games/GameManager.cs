@@ -1,7 +1,8 @@
 ﻿using Exiled.API.Features;
-using GothGirlAIPlugin.Utils.Games;
+using GothGirlAIPlugin.Utils;
+using GothGirlAIPlugin.Utils.UI;
 
-namespace GothGirlAIPlugin.Utils
+namespace GothGirlAIPlugin.Utils.Games
 {
     public enum GameState
     {
@@ -17,18 +18,17 @@ namespace GothGirlAIPlugin.Utils
             {1, new GuessTheNumberGame() }
         };
         private static IGame? _currentGame = null;
-        private static Action<string>? _answerCallback;
+        private static Action<AIMessage>? _answerCallback = GameUI.EnqueueMessage;
         private static GameState _gameState = GameState.Sleeping;
-
-        public static void SetAnswerCallback(Action<string> callback)
-        {
-            _answerCallback = callback;
-        }
 
         private static void ShowMenu()
         {
             string menu = string.Join("\n", games.Select(kvp => $"{kvp.Key} - {kvp.Value.Name}"));
-            _answerCallback!(menu);
+            AIMessage message = new()
+            {
+                IntercomMessage = menu,
+            };
+            _answerCallback!(message);
         }
 
         private static void StartGame(int option)
@@ -52,7 +52,7 @@ namespace GothGirlAIPlugin.Utils
 
         public static void HandleInput(IEnumerable<string> arguments)
         {
-            if (IntercomGameUI.IsTyping)
+            if (GameUI.IsTyping)
             {
                 return;
             }
@@ -69,7 +69,12 @@ namespace GothGirlAIPlugin.Utils
             bool isValidArgument = int.TryParse(firstArgument, out int option);
             if (_gameState == GameState.Choosing && !isValidArgument)
             {
-                _answerCallback!("Игры с таким номером не существует.");
+                AIMessage message = new()
+                {
+                    IntercomMessage = "Игры с таким номером не существует.",
+                    CASSIEMessage = "", // FIXME
+                };
+                _answerCallback!(message);
                 ShowMenu();
                 Log.Info($"Пользователь выбрал несуществующую игру");
             }
@@ -97,7 +102,12 @@ namespace GothGirlAIPlugin.Utils
             }
             else
             {
-                _answerCallback!("Произошла непредвиденная ошибка...");
+                AIMessage message = new()
+                {
+                    IntercomMessage = "Произошла непредвиденная ошибка...",
+                    CASSIEMessage = "", // FIXME
+                };
+                _answerCallback!(message);
                 _gameState = GameState.Sleeping;
                 Log.Warn($"Произошла непредвиденная ошибка...");
             }
