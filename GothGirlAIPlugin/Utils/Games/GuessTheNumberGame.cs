@@ -18,7 +18,7 @@ namespace GothGirlAIPlugin.Utils.Games
             AIMessage message = new()
             {
                 IntercomMessage = "Игра началась, передавайте числа через команду!",
-                CASSIEMessage = "", // FIXME
+                CASSIEMessage = "E gram n a chi last",
             };
             _answerCallback!(message);
         }
@@ -31,7 +31,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Для использования команды нужно передать число.",
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "Pi chi chi s low",
                 };
                 _answerCallback!(message);
                 Log.Info("Пользователь не передал параметр");
@@ -44,7 +44,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Первый передаваемый параметр должен быть числом.",
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "Pi chi chi s low",
                 };
                 _answerCallback!(message);
                 Log.Info($"Пользователь передал параметр неправильного типа: {firstArgument}");
@@ -56,7 +56,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Вы угадали число! Загаданное число: " + RandomNumber,
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "U good a l",
                 };
                 _answerCallback!(message);
                 Log.Info($"Пользователь угадал загаданное число: {RandomNumber}");
@@ -67,7 +67,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Загаданное число больше введённого",
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "B old she",
                 };
                 _answerCallback!(message);
                 Log.Info($"Пользователь ввёл число меньше загаданного");
@@ -77,7 +77,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Загаданное число меньше введённого",
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "Me n she",
                 };
                 _answerCallback!(message);
                 Log.Info($"Пользователь ввёл число больше загаданного");
@@ -91,8 +91,9 @@ namespace GothGirlAIPlugin.Utils.Games
             AIMessage message = new()
             {
                 IntercomMessage = "Игра завершена",
-                CASSIEMessage = "", // FIXME
+                CASSIEMessage = "P o calm",
             };
+            _answerCallback!(message);
             _answerCallback = null;
             RandomNumber = null;
         }

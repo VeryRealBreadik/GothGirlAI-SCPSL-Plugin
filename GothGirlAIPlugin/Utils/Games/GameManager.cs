@@ -1,5 +1,4 @@
 ﻿using Exiled.API.Features;
-using GothGirlAIPlugin.Utils;
 using GothGirlAIPlugin.Utils.UI;
 
 namespace GothGirlAIPlugin.Utils.Games
@@ -72,7 +71,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Игры с таким номером не существует.",
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "No e gram",
                 };
                 _answerCallback!(message);
                 ShowMenu();
@@ -105,7 +104,7 @@ namespace GothGirlAIPlugin.Utils.Games
                 AIMessage message = new()
                 {
                     IntercomMessage = "Произошла непредвиденная ошибка...",
-                    CASSIEMessage = "", // FIXME
+                    CASSIEMessage = "O she b calm",
                 };
                 _answerCallback!(message);
                 _gameState = GameState.Sleeping;

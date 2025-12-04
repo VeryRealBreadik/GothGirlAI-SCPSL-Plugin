@@ -7,7 +7,7 @@ namespace GothGirlAIPlugin.Utils.UI
     {
         private static Queue<AIMessage> _messagesQueue = new();
         public static bool IsTyping = false;
-        private static float _charDelay = 0.1f;
+        private static float _charDelay = 0.06f;
 
         public static void EnqueueMessage(AIMessage message)
         {
